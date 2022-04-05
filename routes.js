@@ -10,7 +10,7 @@ router.get("/intervention", async (req, res) => {
 
 router.patch("/intervention/:code", async (req, res) => {
 	try {
-        const interventions = await intervention.findOneAndUpdate(req.params.code,{new : true});
+        const interventions = await intervention.findOneAndUpdate(req.params.code,{new : true, $set: {heureDebutReel: new Date(), heureFinReel: new Date()}});
         Object.assign(interventions, req.body)
         interventions.save()
         res.send({heureDebutReel: new Date(), heureFinReel: new Date()})
